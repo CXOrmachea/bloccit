@@ -7,22 +7,6 @@
 <div class="row">
   <div class="span8">
     <p class="lead"><%= @topic.description %></p>
-    <% @posts.each do |post| %>
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to (markdown post.title), [@topic, post] %>
-          </h4>
-          <small>
-            <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-            submitted <%= time_ago_in_words(post.created_at) %> ago by 
-            <%= post.user.name %><br/>
-            <%= post.comments.count %> Comments
-          </small>
-
-        </div>
-      </div>
-    <% end %>
   </div>
   <div class="span4">
     <% if can? :create, Post %>
@@ -30,3 +14,25 @@
     <% end %>
   </div>
 </div>
+
+<% @posts.each do |post| %>
+  <div class = "row">
+    <br>
+    <div class = "span3">
+      <%= image_tag(post.postimage.medium.url) if post.postimage? %>
+    </div>
+    <div class = "span 9">
+      <div class="media media-body">
+        <h4 class="media-heading">
+          <%= link_to (markdown post.title), [@topic, post] %>
+        </h4>
+        <small>
+          <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
+          submitted <%= time_ago_in_words(post.created_at) %> ago by 
+          <%= post.user.name %><br/>
+          <%= post.comments.count %> Comments
+        </small>
+      </div>
+    </div>
+  </div>
+<% end %>
