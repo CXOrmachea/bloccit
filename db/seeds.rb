@@ -19,18 +19,25 @@ rand(4..10).times do
   u.save
 
   rand(5..12).times do
+    topic_count = Topic.count
     p = u.posts.create(
-      topic: topics[rand % topics.count], #this is different from Bloc's code
+      topic: Topic.find(rand(1..topic_count)), #this is different from Bloc's code
       title: Faker::Lorem.words(rand(1..10)).join(" "), 
       body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"))
     # set the created_at to a time within the past year
     p.update_attribute(:created_at, Time.now - rand(600..31536000))
 
+  end
+end
 
-    rand(3..7).times do
-      p.comments.create(
-      body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"))
-    end
+post_count = Post.count
+User.all.each do |user|
+  rand(30..50).times do
+    p = Post.find(rand(1..post_count))
+    c = user.comments.create(
+      body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"),
+      post: p)
+    c.update_attribute(:created_at, Time.now - rand(600..31536000))
   end
 end
 

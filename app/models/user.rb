@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   :remember_me, :name, :avatar
   # attr_accessible :title, :body
   has_many :posts
+  has_many :comments
   mount_uploader :avatar, AvatarUploader
 
   before_create :set_member
