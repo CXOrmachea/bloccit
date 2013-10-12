@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(params[:comment])
     @comment.post = @post
 
-    authorize! :create, :comment, message: "You must be signed in to comment"
+    authorize! :create, @comment, message: "You must be signed in to comment"
 
     if @comment.save
       flash[:notice] = "Your comment was saved."
