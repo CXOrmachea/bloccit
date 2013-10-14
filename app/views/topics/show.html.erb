@@ -21,10 +21,13 @@
 <% @posts.each do |post| %>
   <div class = "row">
     <br>
-    <div class = "span3">
-      <%= image_tag(post.postimage.medium.url) if post.postimage? %>
-    </div>
-    <div class = "span 9">
+    <%= render partial: "votes/voter", locals: { topic: @topic, post: post} %>
+    <% if post.postimage? %>
+      <div class = "span2">
+        <%= image_tag(post.postimage.medium.url) if post.postimage? %>
+      </div>
+    <% end %>
+    <div class = "span 10">
       <div class="media media-body">
         <h4 class="media-heading">
           <%= link_to (markdown post.title), [@topic, post] %>

@@ -80,13 +80,6 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    haml (4.0.3)
-      tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
     hashie (2.0.4)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -203,8 +196,6 @@ DEPENDENCIES
   faker
   figaro
   fog
-  haml
-  haml-rails
   jquery-rails
   meta_request
   mini_magick
