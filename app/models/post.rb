@@ -1,11 +1,13 @@
 class Post < ActiveRecord::Base
+  after_create :create_vote
+
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   attr_accessible :body, :title, :topic, :postimage
   belongs_to :user
   belongs_to :topic
   mount_uploader :postimage, PostimageUploader
-  default_scope order('created_at DESC')
+  default_scope order('rank DESC')
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: {minimum: 20}, presence: true
@@ -23,5 +25,18 @@ class Post < ActiveRecord::Base
 
   def points
     self.votes.sum(:value).to_i
+  end
+
+  def update_rank
+    age = (self.created_at - Time.new(1970,1,1)) / 86400
+    new_rank = points + age
+
+    self.update_attribute(:rank, new_rank)
+  end
+
+  private
+
+  def create_vote
+    user.votes.create(value: 1, post: self)
   end
 end
