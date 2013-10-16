@@ -10,6 +10,7 @@ class Ability
         can :manage, Comment, :user_id => user.id
         can :create, Vote
         can :manage, Favorite, user_id: user.id
+        can :read, Topic
     end
 
     if user.role? :moderator
@@ -21,7 +22,9 @@ class Ability
         can :manage, :all
     end
 
-    can :read, :all
+    can :read, Topic, public: true
+    can :read, Post
+    can :read, Comment
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
