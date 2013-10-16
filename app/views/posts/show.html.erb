@@ -36,7 +36,7 @@
   </div>
 </div>
 <hr/>
-<h2><%= @comments.count %> comments</h2> 
+<h2><%= pluralize(@comments.count, 'comment') %></h2> 
 <%= render @comments %>
 
 <% if can? :create, Comment %>
