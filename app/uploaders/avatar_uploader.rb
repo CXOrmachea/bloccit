@@ -21,7 +21,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # OUR VERSION - process files as they are uploaded
-  process :resize_to_fill => [200, 200]
+  process :resize_to_fill => [90, 90]
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

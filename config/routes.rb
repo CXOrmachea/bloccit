@@ -12,6 +12,8 @@ Bloccit::Application.routes.draw do
     end
   end
 
+  resources :users, only: [:show]
+
   match "about" => 'welcome#about', via: :get
 
   root :to => 'welcome#index'

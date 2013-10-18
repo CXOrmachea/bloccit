@@ -18,28 +18,5 @@
   </div>
 </div>
 
-<% @posts.each do |post| %>
-  <div class = "row">
-    <br>
-    <%= render partial: "votes/voter", locals: { topic: @topic, post: post} %>
-    <% if post.postimage? %>
-      <div class = "span2">
-        <%= image_tag(post.postimage.medium.url) if post.postimage? %>
-      </div>
-    <% end %>
-    <div class = "span 10">
-      <div class="media media-body">
-        <h4 class="media-heading">
-          <%= link_to (markdown post.title), [@topic, post] %>
-        </h4>
-        <small>
-          <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-          submitted <%= time_ago_in_words(post.created_at) %> ago by 
-          <%= post.user.name %><br/>
-          <%= post.comments.count %> Comments
-        </small>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render @posts %>
 <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
