@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end  
 
+  def after_sign_in_path_for(resource) #this is a devise method we're overriding
+    topics_path
+  end
+
 end
