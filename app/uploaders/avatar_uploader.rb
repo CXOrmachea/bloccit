@@ -45,6 +45,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   version :small do
     process :resize_to_fill => [30, 30]
   end
+  version :profile do
+    process :resize_to_fill => [45, 45]
+  end
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :scale => [50, 50]

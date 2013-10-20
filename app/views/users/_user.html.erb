@@ -1,0 +1,15 @@
+<div class = 'media'>
+  <%= link_to user, class: 'pull-left' do %>
+  <%= image_tag(user.avatar.profile.url) if user.avatar? %>
+  <% end %>
+  <div class = 'media-body'>
+    <h4 class = 'media-heading'>
+      <%= link_to user.name, user %>
+    </h4>
+    <!-- this is weird because they are underscoring count, we found out our way works too-->
+    <small>
+      <%= pluralize(user.posts.count, 'post') %>,
+      <%= pluralize(user.comments.count, 'comment') %>
+    </small>
+  </div>
+</div>
