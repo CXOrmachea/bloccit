@@ -36,7 +36,7 @@
   </div>
 </div>
 <hr/>
-<h2><%= pluralize(@comments.count, 'comment') %></h2> 
+<h2 class = 'js-comments-count'><%= pluralize(@comments.count, 'comment') %></h2> 
 <%= render partial: 'comments/comment', collection: @comments %>
 
 <!-- new comment button -->
