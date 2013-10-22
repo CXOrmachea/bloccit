@@ -37,8 +37,9 @@
 </div>
 <hr/>
 <h2 class = 'js-comments-count'><%= pluralize(@comments.count, 'comment') %></h2> 
-<%= render partial: 'comments/comment', collection: @comments %>
-
+<div class="js-comments">
+  <%= render partial: 'comments/comment', collection: @comments %>
+</div>
 <!-- new comment button -->
 <% if can? :create, Comment %>
 <hr/>
