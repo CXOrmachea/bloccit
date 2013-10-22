@@ -9,6 +9,12 @@ group :production do
   gem 'pg'
 end
 
+group :development, :test do
+  gem "rspec-rails"
+  gem "guard-rspec"
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
